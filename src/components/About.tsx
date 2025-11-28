@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import type { JSX } from "react";
 import { FiCheckCircle } from "react-icons/fi";
+import illustration from "../assets/illustration.gif";
 
 type AboutProps = {
   title?: string;
@@ -27,14 +28,19 @@ export default function About({
   title = "À propos",
   subtitle = "Présentation rapide de votre activité et de votre approche",
   paragraphs = [
-    "Je crée des sites vitrines modernes, performants et accessibles pour les entrepreneurs et petites entreprises. J'assure une expérience cohérente sur tous les appareils, avec des animations discrètes et une identité visuelle forte.",
-    "Je travaille principalement en front-end (React + TypeScript + Tailwind CSS) et je peux intégrer des services pour la collecte de leads (Netlify Forms, Formspree, Supabase, etc.) si vous souhaitez rendre le site interactif.",
+    "Je conçois des sites vitrines et e-commerce sur-mesure, rapides et accessibles. J'accompagne les entrepreneurs et PME depuis la phase de design jusqu'au déploiement et à la maintenance.",
+    "Compétences principales : intégration de formulaires et gestion de leads, configuration CMS (headless), analytics et tracking des conversions, intégration de paiements sécurisés (Stripe), authentification, et optimisation SEO / performance.",
+    "Je travaille principalement en front-end (React + TypeScript + Tailwind CSS). Je fournis le code source, les assets optimisés et l'assistance au déploiement (Vercel, Netlify ou hébergement custom).",
   ],
   highlights = [
     "Design responsive",
-    "Optimisation performance",
-    "Animations fluides",
-    "Intégration form & SEO",
+    "Formulaires & capture de leads",
+    "CMS (headless) & édition contenu",
+    "Paiements sécurisés (Stripe)",
+    "Analytics & suivi des conversions",
+    "Authentification & gestion rôles",
+    "Optimisation SEO & performances",
+    "Maintenance & sauvegardes",
   ],
 }: AboutProps): JSX.Element {
   return (
@@ -125,43 +131,15 @@ export default function About({
             aria-hidden
           />
 
-          <div className="h-56 md:h-64 rounded-lg border-2 border-photon-magenta/20 flex items-center justify-center">
+          <div className="h-56 md:h-64 rounded-lg flex items-center justify-center ">
             <motion.img
-              src="/assets/illustration.gif"
+              src={illustration}
               alt="Illustration animée"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
               className="object-cover w-full h-full rounded-lg"
             />
-          </div>
-
-          <dl className="mt-6 grid grid-cols-2 gap-4 text-xs text-gray-400">
-            <div>
-              <dt className="text-gray-300 font-medium">
-                Temps de réalisation
-              </dt>
-              <dd className="mt-1">2–4 semaines (selon contenus)</dd>
-            </div>
-            <div>
-              <dt className="text-gray-300 font-medium">Révisions</dt>
-              <dd className="mt-1">Jusqu'à 3 cycles de retours</dd>
-            </div>
-            <div>
-              <dt className="text-gray-300 font-medium">Livrables</dt>
-              <dd className="mt-1">
-                Code React + assets + instructions déploiement
-              </dd>
-            </div>
-            <div>
-              <dt className="text-gray-300 font-medium">Options</dt>
-              <dd className="mt-1">Formulaire, analytics, CMS headless</dd>
-            </div>
-          </dl>
-
-          <div className="mt-6 flex items-center gap-3">
-            <span className="pill-accent">Populaire</span>
-            <span className="text-xs text-gray-400">Livraison clé en main</span>
           </div>
         </motion.div>
       </div>

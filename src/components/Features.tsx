@@ -34,53 +34,74 @@ const item = {
 export default function Features({ items }: Props): JSX.Element {
   const defaultItems: Feature[] = [
     {
-      id: "f-design",
-      title: "Design responsive",
+      id: "f-forms",
+      title: "Formulaires avancés",
       description:
-        "Interface adaptée sur mobile, tablette et desktop, avec animations interactives.",
-      icon: <FiMonitor size={20} />,
+        "Création de formulaires de contact, devis et commandes avec validation, upload d’images et intégration aux workflows.",
+      icon: <FiMail size={20} />,
     },
     {
-      id: "f-performance",
-      title: "Performance optimisée",
+      id: "f-cms",
+      title: "CMS & Headless",
       description:
-        "Sites rapides et légers, chargement optimisé et meilleures pratiques web.",
-      icon: <FiCpu size={20} />,
-    },
-    {
-      id: "f-ecommerce",
-      title: "E-commerce & Paiement",
-      description:
-        "Intégration Stripe pour paiements sécurisés et suivi des commandes.",
-      icon: <FiShoppingCart size={20} />,
-    },
-    {
-      id: "f-database",
-      title: "Gestion clients",
-      description:
-        "Base de données sécurisée pour suivre vos clients et vos contacts.",
+        "Intégration de CMS (headless ou classique) pour gérer facilement le contenu sans déployer de code.",
       icon: <FiDatabase size={20} />,
     },
     {
-      id: "f-interactions",
-      title: "Animations & micro-interactions",
+      id: "f-analytics",
+      title: "Analytics & suivi",
       description:
-        "Transitions, effets et interactions pour un site vivant et engageant.",
-      icon: <FiZap size={20} />,
+        "Configuration d’outils d’analyse, tableaux de bord et tracking des conversions pour mesurer la performance.",
+      icon: <FiCpu size={20} />,
     },
     {
-      id: "f-secu",
-      title: "Sécurité",
+      id: "f-payments",
+      title: "Paiements en ligne",
       description:
-        "Protection des données et bonnes pratiques pour vos utilisateurs.",
+        "Intégration Stripe / solutions de paiement sécurisées, gestion des paniers et suivi des transactions.",
+      icon: <FiShoppingCart size={20} />,
+    },
+    {
+      id: "f-auth",
+      title: "Authentification & sécurité",
+      description:
+        "Systèmes d’authentification (email, OAuth), gestion des rôles et bonnes pratiques de sécurité.",
       icon: <FiShield size={20} />,
     },
     {
-      id: "f-mail",
-      title: "Notifications & Emails",
+      id: "f-api",
+      title: "Intégration API",
       description:
-        "Intégration EmailJS pour formulaires de contact et notifications automatiques.",
-      icon: <FiMail size={20} />,
+        "Connexion à des APIs tierces (ERP, CRM, services externes) et développement d’API pour échanger des données.",
+      icon: <FiMonitor size={20} />,
+    },
+    {
+      id: "f-seo",
+      title: "SEO & performance",
+      description:
+        "Optimisation SEO on-page, balises meta, sitemap, et bonnes pratiques de performance (lazy load, code splitting).",
+      icon: <FiZap size={20} />,
+    },
+    {
+      id: "f-ops",
+      title: "Hébergement & déploiement",
+      description:
+        "Assistance déploiement (Vercel, Netlify, hébergement custom), configuration domaine et CI/CD.",
+      icon: <FiCpu size={20} />,
+    },
+    {
+      id: "f-maintenance",
+      title: "Maintenance & support",
+      description:
+        "Forfaits de maintenance, mises à jour de sécurité, sauvegardes et support post-lancement.",
+      icon: <FiDatabase size={20} />,
+    },
+    {
+      id: "f-access",
+      title: "Accessibilité",
+      description:
+        "Conformité WCAG de base et améliorations d’accessibilité pour une meilleure expérience utilisateur.",
+      icon: <FiMonitor size={20} />,
     },
   ];
 
