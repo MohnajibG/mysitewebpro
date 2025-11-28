@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+:root {
+  --photon-magenta: #f08ed8;
+  --neon-cyan: #00ffff;
+  --dark-matter-indigo: #2e2b5f;
+  --ion-yellow: #fff700;
+  --glitch-teal: #00ffd5;
+  --black-hole-gray: #121212;
+  --glass-alpha: 0.12;
+}
+
+/* Global body baseline */
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  background: var(--black-hole-gray);
+  color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+}
+
+/* HERO gradient (tailwind-friendly helper) */
+.bg-hero-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--dark-matter-indigo) 0%,
+    rgba(46, 43, 95, 0.95) 20%,
+    rgba(255, 51, 204, 0.12) 45%,
+    rgba(0, 255, 255, 0.06) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradient-move 8s ease infinite;
+}
+
+/* Neon text effect */
+.neon-text {
+  color: var(--photon-magenta);
+  text-shadow: 0 0 6px rgba(255, 51, 204, 0.9),
+    0 0 18px rgba(255, 51, 204, 0.35), 0 0 40px rgba(0, 255, 255, 0.08);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  animation: neon-flicker 3.5s linear infinite;
+}
+
+/* Secondary neon (cyan) */
+.neon-text-cyan {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.9), 0 0 22px rgba(0, 255, 255, 0.28),
+    0 0 48px rgba(255, 51, 204, 0.03);
+}
+
+/* Neon button */
+.btn-neon {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.1rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--photon-magenta), var(--neon-cyan));
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 6px 30px rgba(46, 43, 95, 0.6),
+    0 0 28px rgba(255, 51, 204, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-neon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 48px rgba(46, 43, 95, 0.7),
+    0 0 80px rgba(255, 51, 204, 0.16);
+}
+.btn-neon:active {
+  transform: translateY(-1px) scale(0.997);
+}
+
+/* Ghost / outline neon */
+.btn-ghost-neon {
+  padding: 0.55rem 1rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 51, 204, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  color: var(--neon-cyan);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 255, 255, 0.04);
+}
+
+/* Card cyberpunk style */
+.card-cyber {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 51, 204, 0.06);
+  padding: 1.25rem;
+  border-radius: 0.9rem;
+  box-shadow: 0 10px 30px rgba(46, 43, 95, 0.6),
+    0 0 40px rgba(255, 51, 204, 0.04);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* Accent pill */
+.pill-accent {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 51, 204, 0.12),
+    rgba(0, 255, 255, 0.08)
+  );
+  color: var(--photon-magenta);
+  border: 1px solid rgba(255, 51, 204, 0.06);
+}
+
+/* Input style (for footer/newsletter, forms) */
+.input-neon {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 51, 204, 0.06);
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.5rem;
+  color: #eaeaea;
+  outline: none;
+  transition: box-shadow 0.12s ease, border-color 0.12s ease;
+}
+.input-neon::placeholder {
+  color: #9aa0a6;
+}
+.input-neon:focus {
+  box-shadow: 0 0 18px rgba(255, 51, 204, 0.12),
+    0 0 36px rgba(0, 255, 255, 0.06);
+  border-color: rgba(255, 51, 204, 0.22);
+}
+
+/* small neon divider */
+.neon-divider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 51, 204, 0.9),
+    rgba(0, 255, 255, 0.9)
+  );
+  opacity: 0.85;
+  border-radius: 2px;
+}
+
+/* subtle glass panel */
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, var(--glass-alpha)),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+  border-radius: 0.75rem;
+}
+
+/* glow utilities */
+.glow-magenta {
+  box-shadow: 0 0 28px rgba(255, 51, 204, 0.18);
+}
+.glow-cyan {
+  box-shadow: 0 0 28px rgba(0, 255, 255, 0.16);
+}
+
+/* small responsive helpers */
+@media (max-width: 640px) {
+  .card-cyber {
+    padding: 0.9rem;
+  }
+  .neon-text {
+    font-size: 1.05rem;
+  }
+}
+
+/* animations (keyframes used by tailwind config are available, duplicate defs for fallback) */
+@keyframes neon-flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 51, 204, 0.9));
+  }
+  20%,
+  24%,
+  55% {
+    opacity: 0.6;
+    filter: none;
+  }
+}
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Usage examples (commented — coller dans ton JSX) */
+/*
+<button className="btn-neon">Demander un devis</button>
+
+<div className="card-cyber">
+  <h3 className="neon-text">Design responsive</h3>
+  <p className="text-sm text-gray-300 mt-2">Adapté mobile / desktop, micro-interactions et performance.</p>
+  <span className="pill-accent mt-4 inline-block">Populaire</span>
+</div>
+
+<section className="bg-hero-gradient py-20">
+  <div className="max-w-6xl mx-auto px-6">
+    <h1 className="neon-text text-4xl">Mon compte pro</h1>
+    <p className="text-gray-300 mt-3">Site vitrine one-page style cyberpunk</p>
+  </div>
+</section>
+*/
