@@ -126,12 +126,14 @@ export default function About({
           />
 
           <div className="h-56 md:h-64 rounded-lg border-2 border-photon-magenta/20 flex items-center justify-center">
-            <span className="text-sm text-gray-300 text-center px-4">
-              Illustration / photo — remplacez par un mockup ou image d'équipe.
-              <span className="block text-xs text-gray-500 mt-2">
-                Format conseillé : 1200×800
-              </span>
-            </span>
+            <motion.img
+              src="/assets/illustration.gif"
+              alt="Illustration animée"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="object-cover w-full h-full rounded-lg"
+            />
           </div>
 
           <dl className="mt-6 grid grid-cols-2 gap-4 text-xs text-gray-400">
