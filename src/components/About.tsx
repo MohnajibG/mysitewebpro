@@ -1,129 +1,167 @@
-import { useState, type JSX } from "react";
+import { motion } from "framer-motion";
+import type { JSX } from "react";
+import { FiCheckCircle } from "react-icons/fi";
 
-type Form = { name: string; email: string; message: string };
-type Status = "idle" | "sending" | "sent" | "error";
+type AboutProps = {
+  title?: string;
+  subtitle?: string;
+  paragraphs?: string[];
+  highlights?: string[];
+};
 
-export default function Contact(): JSX.Element {
-  const [form, setForm] = useState<Form>({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<Status>("idle");
-  const [error, setError] = useState<string | null>(null);
+const container = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0, transition: { staggerChildren: 0.06 } },
+};
 
-  const validateEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+const item = {
+  hidden: { opacity: 0, y: 6 },
+  show: { opacity: 1, y: 0 },
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      setError("Tous les champs sont requis.");
-      setStatus("error");
-      return;
-    }
-    if (!validateEmail(form.email)) {
-      setError("Email invalide.");
-      setStatus("error");
-      return;
-    }
-
-    // Simulation d'envoi côté front-end
-    setStatus("sending");
-    setTimeout(() => {
-      setStatus("sent");
-      setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 2200);
-    }, 900);
-  };
-
+/**
+ * About — version "cyberpunk" : utilise les utilitaires CSS fournis
+ * (neon-text, neon-text-cyan, card-cyber, pill-accent, glow-*, input-neon).
+ */
+export default function About({
+  title = "À propos",
+  subtitle = "Présentation rapide de votre activité et de votre approche",
+  paragraphs = [
+    "Je crée des sites vitrines modernes, performants et accessibles pour les entrepreneurs et petites entreprises. J'assure une expérience cohérente sur tous les appareils, avec des animations discrètes et une identité visuelle forte.",
+    "Je travaille principalement en front-end (React + TypeScript + Tailwind CSS) et je peux intégrer des services pour la collecte de leads (Netlify Forms, Formspree, Supabase, etc.) si vous souhaitez rendre le site interactif.",
+  ],
+  highlights = [
+    "Design responsive",
+    "Optimisation performance",
+    "Animations fluides",
+    "Intégration form & SEO",
+  ],
+}: AboutProps): JSX.Element {
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-3xl mx-auto px-6">
-        <h2
-          className="text-2xl font-semibold neon-text"
-          style={{ color: "var(--photon-magenta)" }}
+    <section
+      id="about"
+      aria-labelledby="about-title"
+      className="py-20 bg-black-hole-gray/80"
+    >
+      <div className="max-w-6xl mx-auto px-6 grid gap-8 md:grid-cols-2 items-start">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
         >
-          Contact & Devis
-        </h2>
+          <motion.h2
+            id="about-title"
+            variants={item}
+            className="text-3xl font-semibold neon-text"
+            style={{ color: "var(--photon-magenta)" }}
+          >
+            {title}
+          </motion.h2>
 
-        <p className="mt-2 text-sm text-gray-300">
-          Discutons de votre projet digital et obtenez un devis gratuit.
-          <br />
-          Sites vitrines, e-commerce, paiement en ligne, gestion clients et
-          animations sur-mesure. Tout est pensé pour booster votre activité et
-          votre présence en ligne.
-        </p>
+          <motion.p
+            variants={item}
+            className="mt-3 text-lg text-gray-300 neon-text-cyan"
+            style={{ color: "var(--neon-cyan)" }}
+          >
+            {subtitle}
+          </motion.p>
 
-        <form
-          onSubmit={handleSubmit}
-          className="mt-6 grid gap-4"
-          aria-label="Formulaire de contact"
-        >
-          <label className="sr-only" htmlFor="contact-name">
-            Nom
-          </label>
-          <input
-            id="contact-name"
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            placeholder="Nom"
-            className="p-3 rounded input-neon"
-            required
-          />
+          <div className="mt-6 space-y-4">
+            {paragraphs.map((p, i) => (
+              <motion.p
+                key={i}
+                variants={item}
+                className="text-sm text-gray-300 leading-relaxed card-cyber p-4"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00))",
+                }}
+              >
+                {p}
+              </motion.p>
+            ))}
+          </div>
 
-          <label className="sr-only" htmlFor="contact-email">
-            Email
-          </label>
-          <input
-            id="contact-email"
-            type="email"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
-            placeholder="Email"
-            className="p-3 rounded input-neon"
-            required
-          />
+          <motion.ul
+            variants={item}
+            className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3"
+          >
+            {highlights.map((h, i) => (
+              <motion.li
+                key={i}
+                className="flex items-center gap-3 text-sm text-gray-200"
+                variants={item}
+              >
+                <span className="flex-none rounded-md bg-photon-magenta/10 p-2 text-photon-magenta glow-magenta">
+                  <FiCheckCircle />
+                </span>
+                <span>{h}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
 
-          <label className="sr-only" htmlFor="contact-message">
-            Message
-          </label>
-          <textarea
-            id="contact-message"
-            value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-            placeholder="Décrivez votre projet, vos besoins..."
-            rows={6}
-            className="p-3 rounded input-neon resize-vertical"
-            required
-          />
-
-          <div className="flex flex-wrap items-center gap-4">
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full btn-neon"
-              disabled={status === "sending"}
-              aria-live="polite"
+          <motion.div variants={item} className="mt-6">
+            <a
+              href="#contact"
+              className="inline-block px-5 py-3 rounded-full btn-neon"
+              aria-label="Me contacter"
             >
-              {status === "sending" ? "Envoi…" : "Envoyer"}
-            </button>
+              Me contacter
+            </a>
+          </motion.div>
+        </motion.div>
 
-            <div className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
-              <span className="pill-accent">Front-end</span>
-              <span className="pill-accent">
-                React / Tailwind / Framer Motion
+        <motion.div
+          variants={item}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="rounded-2xl p-6 card-cyber border-photon-magenta/8 relative overflow-hidden"
+        >
+          {/* cyan subtle glow */}
+          <div
+            className="absolute -inset-8 blur-2xl opacity-30 glow-cyan"
+            aria-hidden
+          />
+
+          <div className="h-56 md:h-64 rounded-lg border-2 border-photon-magenta/20 flex items-center justify-center">
+            <span className="text-sm text-gray-300 text-center px-4">
+              Illustration / photo — remplacez par un mockup ou image d'équipe.
+              <span className="block text-xs text-gray-500 mt-2">
+                Format conseillé : 1200×800
               </span>
-              <span className="pill-accent">E-commerce & Stripe</span>
-              <span>Aucun stockage sans backend</span>
-            </div>
+            </span>
           </div>
 
-          <div aria-live="polite" className="h-6 mt-1 text-sm">
-            {status === "sent" && (
-              <span className="text-green-400">Message envoyé — merci !</span>
-            )}
-            {status === "error" && error && (
-              <span className="text-rose-400">{error}</span>
-            )}
+          <dl className="mt-6 grid grid-cols-2 gap-4 text-xs text-gray-400">
+            <div>
+              <dt className="text-gray-300 font-medium">
+                Temps de réalisation
+              </dt>
+              <dd className="mt-1">2–4 semaines (selon contenus)</dd>
+            </div>
+            <div>
+              <dt className="text-gray-300 font-medium">Révisions</dt>
+              <dd className="mt-1">Jusqu'à 3 cycles de retours</dd>
+            </div>
+            <div>
+              <dt className="text-gray-300 font-medium">Livrables</dt>
+              <dd className="mt-1">
+                Code React + assets + instructions déploiement
+              </dd>
+            </div>
+            <div>
+              <dt className="text-gray-300 font-medium">Options</dt>
+              <dd className="mt-1">Formulaire, analytics, CMS headless</dd>
+            </div>
+          </dl>
+
+          <div className="mt-6 flex items-center gap-3">
+            <span className="pill-accent">Populaire</span>
+            <span className="text-xs text-gray-400">Livraison clé en main</span>
           </div>
-        </form>
+        </motion.div>
       </div>
     </section>
   );
