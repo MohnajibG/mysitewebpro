@@ -162,7 +162,7 @@ export default function Features({ items }: Props): JSX.Element {
                     Voir
                   </a>
 
-                  <span className="text-xs text-gray-400">—</span>
+                  <span className="text-xs text-gray-400">-</span>
 
                   <span className="text-xs text-gray-400">Rapide</span>
                 </div>

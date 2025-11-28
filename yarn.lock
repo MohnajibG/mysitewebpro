@@ -1416,6 +1416,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cookie@npm:^1.0.1":
+  version: 1.1.1
+  resolution: "cookie@npm:1.1.1"
+  checksum: e40c4ff817a73ec0a41413654ca9a71e6207bd6e511151bb1d307aef2903eb59771127a85474afe0e12a8982804f7b03cce0bda798b55c306aca9608b4b9acab
+  languageName: node
+  linkType: hard
+
 "cross-spawn@npm:^7.0.6":
   version: 7.0.6
   resolution: "cross-spawn@npm:7.0.6"
@@ -2469,6 +2476,7 @@ __metadata:
     react: ^19.2.0
     react-dom: ^19.2.0
     react-icons: ^5.5.0
+    react-router-dom: ^7.9.6
     tailwindcss: ^4
     typescript: ~5.9.3
     typescript-eslint: ^8.46.4
@@ -2706,6 +2714,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-router-dom@npm:^7.9.6":
+  version: 7.9.6
+  resolution: "react-router-dom@npm:7.9.6"
+  dependencies:
+    react-router: 7.9.6
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: 59dff76133a6d26b7a5e222f83987010361872d1fdf5b512dad6280101de871dad4915d5f3c8699b80de166a4d56d498e490f75abd03880d776088ba6268dcd4
+  languageName: node
+  linkType: hard
+
+"react-router@npm:7.9.6":
+  version: 7.9.6
+  resolution: "react-router@npm:7.9.6"
+  dependencies:
+    cookie: ^1.0.1
+    set-cookie-parser: ^2.6.0
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+  checksum: 0bc04272bb7e52466f48d6725c0d0516b45e136695cfa37a852fa370f4cd0e0a91a80e118c24803d8b2dc85af7d4453f11a3a5ae1ec57ee672eb9696114c129e
+  languageName: node
+  linkType: hard
+
 "react@npm:^19.2.0":
   version: 19.2.0
   resolution: "react@npm:19.2.0"
@@ -2837,6 +2873,13 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: f013a3ee4607857bcd3503b6ac1d80165f7f8ea94f5d55e2d3e33df82fce487aa3313b987abf9b39e0793c83c9fc67b76c36c067625141a9f6f704ae0ea18db2
+  languageName: node
+  linkType: hard
+
+"set-cookie-parser@npm:^2.6.0":
+  version: 2.7.2
+  resolution: "set-cookie-parser@npm:2.7.2"
+  checksum: 9e1b09e7184079c81f9ba4d2db3222854adf4e6e4fe73982388367649386a93e7f9b979333ddeba22610706def93c2478f34c3324fe223528cb2c4c879a2c2d3
   languageName: node
   linkType: hard
 

@@ -48,7 +48,7 @@ export default function Contact(): JSX.Element {
           Discutons de votre projet digital et obtenez un devis gratuit.
           <br />
           Sites vitrines, e-commerce, paiement en ligne, gestion clients et
-          animations interactives sur-mesure — tout est pensé pour booster votre
+          animations interactives sur-mesure, tout est pensé pour booster votre
           activité.
         </p>
 
@@ -117,7 +117,7 @@ export default function Contact(): JSX.Element {
 
           <div aria-live="polite" className="h-6 mt-1 text-sm">
             {status === "sent" && (
-              <span className="text-green-400">Message envoyé — merci !</span>
+              <span className="text-green-400">Message envoyé, merci !</span>
             )}
             {status === "error" && error && (
               <span className="text-rose-400">{error}</span>

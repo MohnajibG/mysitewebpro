@@ -1,6 +1,8 @@
 import React, { useState, type JSX } from "react";
 import { FiMail, FiPhone, FiMapPin, FiChevronRight } from "react-icons/fi";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logo from "../assets/logo-mngdev.png";
 
 type NewsletterState = {
   email: string;
@@ -24,11 +26,10 @@ export default function Footer(): JSX.Element {
       setNewsletter({ email, status: "error", message: "Email invalide" });
       return;
     }
-    // Frontend-only placeholder behaviour — intégrer un service pour envoi réel
     setNewsletter({
       email,
       status: "sent",
-      message: "Merci — inscription enregistrée localement.",
+      message: "Merci, inscription enregistrée localement.",
     });
     setTimeout(() => {
       setNewsletter({ email: "", status: "idle" });
@@ -38,78 +39,94 @@ export default function Footer(): JSX.Element {
   return (
     <footer className="border-t border-photon-magenta/10 bg-black-hole-gray text-gray-200">
       <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8 md:grid-cols-3">
-        {/* Brand & description */}
+        {/* Logo & description */}
         <div className="space-y-4">
-          <a
-            href="#"
-            className="inline-block text-2xl font-extrabold neon-text"
-            style={{ color: "var(--photon-magenta)" }}
+          <Link
+            to="/"
+            className="inline-flex items-center text-2xl font-extrabold neon-text"
           >
-            MonComptePro
-          </a>
+            <img src={logo} alt="MNGDEV Logo" className="w-10 h-10 mr-2" />
+            MNGDEV
+          </Link>
 
           <p className="mt-1 text-sm text-gray-400 max-w-xs">
-            Site vitrine one-page — design cyberpunk, animations néon et
-            expérience soignée. Pour collecte de leads, connectez un service
-            externe (Netlify Forms, Formspree, Supabase).
+            Donnez vie à votre activité en ligne, sites vitrines et e-commerce
+            sur-mesure, design responsive, formulaires, CMS, analytics,
+            paiements sécurisés et SEO optimisé.
           </p>
 
           <div className="mt-4 flex items-center gap-3">
             <a
+              href="https://github.com/MohnajibG"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Github"
-              href="#"
               className="p-2 rounded-md hover:glow-magenta transition"
             >
-              <FaGithub size={18} />
+              <FaGithub size={20} />
             </a>
             <a
+              href="https://www.linkedin.com/in/najib-guerchaoui/"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
-              href="#"
               className="p-2 rounded-md hover:glow-cyan transition"
             >
-              <FaLinkedin size={18} />
+              <FaLinkedin size={20} />
             </a>
             <a
-              aria-label="Twitter"
               href="#"
+              aria-label="Twitter"
               className="p-2 rounded-md hover:glow-magenta transition"
-            >
-              <FaTwitter size={18} />
-            </a>
+            ></a>
           </div>
         </div>
 
-        {/* Quick links */}
+        {/* Liens rapides */}
         <nav aria-label="Liens rapides" className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold text-gray-300">Liens</h3>
+          <h3 className="text-sm font-semibold text-gray-300">Navigation</h3>
 
-          <a
-            href="#features"
+          <Link
+            to="/#features"
             className="flex items-center gap-2 text-sm hover:text-neon-cyan transition-colors"
           >
             <FiChevronRight /> Services
-          </a>
+          </Link>
 
-          <a
-            href="#about"
+          <Link
+            to="/#about"
             className="flex items-center gap-2 text-sm hover:text-glitch-teal transition-colors"
           >
             <FiChevronRight /> À propos
-          </a>
+          </Link>
 
-          <a
-            href="#contact"
+          <Link
+            to="/#contact"
             className="flex items-center gap-2 text-sm hover:text-ion-yellow transition-colors"
           >
             <FiChevronRight /> Contact
-          </a>
+          </Link>
 
-          <a
-            href="/mentions"
+          <Link
+            to="/mentions-legales"
             className="flex items-center gap-2 text-sm hover:text-photon-magenta transition-colors"
           >
             <FiChevronRight /> Mentions légales
-          </a>
+          </Link>
+
+          <Link
+            to="/politique-confidentialite"
+            className="flex items-center gap-2 text-sm hover:text-neon-cyan transition-colors"
+          >
+            <FiChevronRight /> Politique de confidentialité
+          </Link>
+
+          <Link
+            to="/cookies"
+            className="flex items-center gap-2 text-sm hover:text-ion-yellow transition-colors"
+          >
+            <FiChevronRight /> Cookies
+          </Link>
         </nav>
 
         {/* Contact + Newsletter */}
@@ -118,22 +135,22 @@ export default function Footer(): JSX.Element {
 
           <ul className="mt-3 text-sm space-y-2 text-gray-400">
             <li className="flex items-center gap-2">
-              <FiMail />{" "}
+              <FiMail />
               <a
-                href="mailto:contact@votresite.tld"
+                href="mailto:mngdevpro@gmail.com"
                 className="hover:text-neon-cyan transition-colors"
               >
-                contact@votresite.tld
+                mngdevpro@gmail.com
               </a>
             </li>
 
             <li className="flex items-center gap-2">
-              <FiPhone />{" "}
+              <FiPhone />
               <a
-                href="tel:+33123456789"
+                href="tel:+33658478308"
                 className="hover:text-glitch-teal transition-colors"
               >
-                +33 1 23 45 67 89
+                +33 6 58 47 83 08
               </a>
             </li>
 
@@ -175,7 +192,6 @@ export default function Footer(): JSX.Element {
               <button
                 type="submit"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full btn-neon"
-                aria-label="S'inscrire à la newsletter"
               >
                 S'inscrire
               </button>
@@ -194,32 +210,27 @@ export default function Footer(): JSX.Element {
                 <span className="text-green-400">{newsletter.message}</span>
               )}
             </p>
-
-            <p className="mt-3 text-xs text-gray-500">
-              Front-end uniquement — aucun envoi réel tant qu'un service n'est
-              pas connecté.
-            </p>
           </form>
         </div>
       </div>
 
       <div className="border-t border-photon-magenta/6">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
-          <span>© {currentYear} MonComptePro — Tous droits réservés</span>
+          <span>© {currentYear} MNG DEV - Tous droits réservés</span>
 
           <div className="mt-2 md:mt-0 flex gap-4">
-            <a
-              href="/privacy"
+            <Link
+              to="/politique-confidentialite"
               className="hover:text-neon-cyan transition-colors"
             >
               Politique de confidentialité
-            </a>
-            <a
-              href="/cookies"
+            </Link>
+            <Link
+              to="/cookies"
               className="hover:text-photon-magenta transition-colors"
             >
               Cookies
-            </a>
+            </Link>
           </div>
         </div>
       </div>

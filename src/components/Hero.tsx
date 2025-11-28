@@ -28,7 +28,7 @@ export default function Hero(): JSX.Element {
             {" "}
             Je conçois des sites web professionnels qui incarnent l’identité de
             votre entreprise. Sites vitrines, boutiques en ligne, gestion
-            clients et paiements intégrés — chaque détail est optimisé pour
+            clients et paiements intégrés, chaque détail est optimisé pour
             améliorer votre visibilité et convertir davantage de visiteurs en
             clients.{" "}
           </p>{" "}
@@ -41,10 +41,10 @@ export default function Hero(): JSX.Element {
           </p>{" "}
           <p className="mt-4 text-lg text-gray-300 max-w-xl text-justify my-5">
             {" "}
-            J’élabore des sites performants et esthétiques — vitrines et
-            boutiques e-commerce — avec gestion des clients et solutions de
-            paiement. Tout est pensé pour renforcer votre image et générer des
-            résultats mesurables.{" "}
+            J’élabore des sites performants et esthétiques vitrines et boutiques
+            e-commerce, avec gestion des clients et solutions de paiement. Tout
+            est pensé pour renforcer votre image et générer des résultats
+            mesurables.{" "}
           </p>
           <div className="mt-6 flex flex-wrap gap-4 items-center">
             <a
@@ -123,7 +123,7 @@ export default function Hero(): JSX.Element {
               <div>
                 <div className="text-gray-300 font-medium text-sm">Temps</div>
                 <div>
-                  2–4 semaines — planning typique :
+                  2–4 semaines - planning typique :
                   <ul className="list-disc ml-4">
                     <li>Phase 1 : Kick-off, maquettes & architecture</li>
                     <li>Phase 2 : Développement des pages principales</li>
@@ -140,7 +140,7 @@ export default function Hero(): JSX.Element {
                   Révisions
                 </div>
                 <div>
-                  Jusqu'à 3 cycles de révision inclus — processus :
+                  Jusqu'à 3 cycles de révision inclus - processus :
                   <ul className="list-disc ml-4">
                     <li>
                       Cycle 1 : Retours sur maquettes et ajustements

@@ -20,10 +20,6 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-/**
- * About — version "cyberpunk" : utilise les utilitaires CSS fournis
- * (neon-text, neon-text-cyan, card-cyber, pill-accent, glow-*, input-neon).
- */
 export default function About({
   title = "À propos",
   subtitle = "Présentation rapide de votre activité et de votre approche",
