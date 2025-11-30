@@ -1,4 +1,5 @@
-import { useState, type JSX } from "react";
+import { useEffect, useState, type JSX } from "react";
+import emailjs from "@emailjs/browser";
 
 type Form = { name: string; email: string; message: string };
 type Status = "idle" | "sending" | "sent" | "error";
@@ -10,7 +11,18 @@ export default function Contact(): JSX.Element {
 
   const validateEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // EmailJS config (Vite env vars)
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY =
+    import.meta.env.VITE_EMAILJS_PUBLIC_KEY ||
+    import.meta.env.VITE_EMAILJS_USER_ID;
+
+  useEffect(() => {
+    if (PUBLIC_KEY) emailjs.init(PUBLIC_KEY);
+  }, [PUBLIC_KEY]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -25,13 +37,36 @@ export default function Contact(): JSX.Element {
       return;
     }
 
-    // Simulation d'envoi côté front-end
+    // If EmailJS variables are not set, fallback to local simulation
+    if (!SERVICE_ID || !TEMPLATE_ID) {
+      setStatus("sending");
+      setTimeout(() => {
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 2200);
+      }, 900);
+      return;
+    }
+
     setStatus("sending");
-    setTimeout(() => {
+
+    const templateParams = {
+      from_name: form.name,
+      from_email: form.email,
+      message: form.message,
+      // add other template fields if your EmailJS template expects them
+    };
+
+    try {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
       setTimeout(() => setStatus("idle"), 2200);
-    }, 900);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setError("Échec de l'envoi — veuillez réessayer plus tard.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -67,6 +102,7 @@ export default function Contact(): JSX.Element {
             placeholder="Nom"
             className="p-3 rounded input-neon"
             required
+            disabled={status === "sending"}
           />
 
           <label className="sr-only" htmlFor="contact-email">
@@ -80,6 +116,7 @@ export default function Contact(): JSX.Element {
             placeholder="Email"
             className="p-3 rounded input-neon"
             required
+            disabled={status === "sending"}
           />
 
           <label className="sr-only" htmlFor="contact-message">
@@ -93,12 +130,13 @@ export default function Contact(): JSX.Element {
             rows={6}
             className="p-3 rounded input-neon resize-vertical"
             required
+            disabled={status === "sending"}
           />
 
           <div className="flex flex-wrap items-center gap-4">
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full btn-neon"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full btn-neon disabled:opacity-60"
               disabled={status === "sending"}
               aria-live="polite"
             >

@@ -1,8 +1,7 @@
-import React, { useState, type JSX } from "react";
+import React, { useState, useRef, type JSX } from "react";
 import { FiMail, FiPhone, FiMapPin, FiChevronRight } from "react-icons/fi";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo-mngdev.png";
 
 type NewsletterState = {
   email: string;
@@ -15,6 +14,7 @@ export default function Footer(): JSX.Element {
     email: "",
     status: "idle",
   });
+  const timeoutRef = useRef<number | null>(null);
 
   const currentYear = new Date().getFullYear();
 
@@ -26,33 +26,43 @@ export default function Footer(): JSX.Element {
       setNewsletter({ email, status: "error", message: "Email invalide" });
       return;
     }
+
     setNewsletter({
       email,
       status: "sent",
-      message: "Merci, inscription enregistrée localement.",
+      message: "Merci — inscription enregistrée localement.",
     });
-    setTimeout(() => {
+
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = window.setTimeout(() => {
       setNewsletter({ email: "", status: "idle" });
+      timeoutRef.current = null;
     }, 2500);
   };
 
   return (
     <footer className="border-t border-photon-magenta/10 bg-black-hole-gray text-gray-200">
       <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8 md:grid-cols-3">
-        {/* Logo & description */}
+        {/* Branding */}
         <div className="space-y-4">
           <Link
             to="/"
             className="inline-flex items-center text-2xl font-extrabold neon-text"
           >
-            <img src={logo} alt="MNGDEV Logo" className="w-10 h-10 mr-2" />
-            MNGDEV
+            <img
+              src="/logo192.png"
+              alt="Najib G"
+              className="w-10 h-10 mr-2 rounded"
+            />
+            Najib G
           </Link>
 
           <p className="mt-1 text-sm text-gray-400 max-w-xs">
-            Donnez vie à votre activité en ligne, sites vitrines et e-commerce
-            sur-mesure, design responsive, formulaires, CMS, analytics,
-            paiements sécurisés et SEO optimisé.
+            Donnez vie à votre activité en ligne — site web moderne, dynamique
+            et sur-mesure. Vitrine, e-commerce, gestion clients, paiements
+            sécurisés, SEO et analytics.
           </p>
 
           <div className="mt-4 flex items-center gap-3">
@@ -65,6 +75,7 @@ export default function Footer(): JSX.Element {
             >
               <FaGithub size={20} />
             </a>
+
             <a
               href="https://www.linkedin.com/in/najib-guerchaoui/"
               target="_blank"
@@ -74,59 +85,58 @@ export default function Footer(): JSX.Element {
             >
               <FaLinkedin size={20} />
             </a>
+
             <a
               href="#"
               aria-label="Twitter"
               className="p-2 rounded-md hover:glow-magenta transition"
-            ></a>
+            >
+              <FaTwitter size={20} />
+            </a>
           </div>
         </div>
 
-        {/* Liens rapides */}
-        <nav aria-label="Liens rapides" className="flex flex-col gap-2">
+        {/* Quick links (anchors + legal pages) */}
+        <nav aria-label="Liens rapides" className="flex flex-col md:gap-2 my-5">
           <h3 className="text-sm font-semibold text-gray-300">Navigation</h3>
 
-          <Link
-            to="/#features"
-            className="flex items-center gap-2 text-sm hover:text-neon-cyan transition-colors"
-          >
-            <FiChevronRight /> Services
-          </Link>
+          <div className="flex flex-col gap-2">
+            {[
+              { label: "Services", to: "/#features", hoverClass: "neon-cyan" },
+              { label: "À propos", to: "/#about", hoverClass: "glitch-teal" },
+              { label: "Contact", to: "/#contact", hoverClass: "ion-yellow" },
+            ].map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`flex items-center gap-2 text-sm hover:text-${item.hoverClass} transition-colors`}
+              >
+                <FiChevronRight /> {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-col gap-2">
+            <Link
+              to="/mentions-legales"
+              className="flex items-center gap-2 text-sm hover:text-photon-magenta transition-colors"
+            >
+              <FiChevronRight /> Mentions légales
+            </Link>
 
-          <Link
-            to="/#about"
-            className="flex items-center gap-2 text-sm hover:text-glitch-teal transition-colors"
-          >
-            <FiChevronRight /> À propos
-          </Link>
+            <Link
+              to="/politique-confidentialite"
+              className="flex items-center gap-2 text-sm hover:text-neon-cyan transition-colors"
+            >
+              <FiChevronRight /> Politique de confidentialité
+            </Link>
 
-          <Link
-            to="/#contact"
-            className="flex items-center gap-2 text-sm hover:text-ion-yellow transition-colors"
-          >
-            <FiChevronRight /> Contact
-          </Link>
-
-          <Link
-            to="/mentions-legales"
-            className="flex items-center gap-2 text-sm hover:text-photon-magenta transition-colors"
-          >
-            <FiChevronRight /> Mentions légales
-          </Link>
-
-          <Link
-            to="/politique-confidentialite"
-            className="flex items-center gap-2 text-sm hover:text-neon-cyan transition-colors"
-          >
-            <FiChevronRight /> Politique de confidentialité
-          </Link>
-
-          <Link
-            to="/cookies"
-            className="flex items-center gap-2 text-sm hover:text-ion-yellow transition-colors"
-          >
-            <FiChevronRight /> Cookies
-          </Link>
+            <Link
+              to="/cookies"
+              className="flex items-center gap-2 text-sm hover:text-ion-yellow transition-colors"
+            >
+              <FiChevronRight /> Cookies
+            </Link>
+          </div>
         </nav>
 
         {/* Contact + Newsletter */}
@@ -192,6 +202,7 @@ export default function Footer(): JSX.Element {
               <button
                 type="submit"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full btn-neon"
+                aria-label="S'inscrire à la newsletter"
               >
                 S'inscrire
               </button>
@@ -210,13 +221,18 @@ export default function Footer(): JSX.Element {
                 <span className="text-green-400">{newsletter.message}</span>
               )}
             </p>
+
+            <p className="mt-3 text-xs text-gray-500">
+              Front-end uniquement — aucun envoi réel tant qu'un service n'est
+              pas connecté.
+            </p>
           </form>
         </div>
       </div>
 
       <div className="border-t border-photon-magenta/6">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
-          <span>© {currentYear} MNG DEV - Tous droits réservés</span>
+          <span>© {currentYear} Najib G — Tous droits réservés</span>
 
           <div className="mt-2 md:mt-0 flex gap-4">
             <Link

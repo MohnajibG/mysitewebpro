@@ -153,7 +153,7 @@ export default function Features({ items }: Props): JSX.Element {
 
                 <p className="mt-1 text-sm text-gray-300">{f.description}</p>
 
-                <div className="mt-3 flex items-center gap-3">
+                {/* <div className="mt-3 flex items-center gap-3">
                   <a
                     href={`#${f.id}`}
                     className="text-xs btn-ghost-neon inline-flex items-center gap-2 px-3 py-1 rounded-md"
@@ -165,7 +165,7 @@ export default function Features({ items }: Props): JSX.Element {
                   <span className="text-xs text-gray-400">-</span>
 
                   <span className="text-xs text-gray-400">Rapide</span>
-                </div>
+                </div> */}
               </div>
             </motion.li>
           ))}

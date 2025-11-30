@@ -1,55 +1,32 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Features from "./components/Features";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import MentionsLegales from "./pages/MentionsLegales";
-import type { JSX } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import Cookies from "./pages/Cookies";
+import ScrollToTop from "./components/ScrollToTop";
+import type { JSX } from "react";
 
 export default function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#121212] text-white selection:bg-photon-magenta selection:text-black">
-        <Navbar />
-        <Routes>
-          {/* Page principale */}
-          <Route
-            path="/"
-            element={
-              <main className="relative">
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 -z-10 bg-hero-gradient opacity-30"
-                />
-                <Hero />
-                <Features />
-                <About />
-                <Contact />
-              </main>
-            }
-          />
+      <ScrollToTop />
 
-          {/* Page Mentions légales */}
-          <Route path="/mentions-legales" element={<MentionsLegales />} />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="mentions-legales" element={<MentionsLegales />} />
           <Route
-            path="/politique-confidentialite"
+            path="politique-confidentialite"
             element={<PolitiqueConfidentialite />}
           />
-          <Route path="/cookies" element={<Cookies />} />
-
-          {/* fallback optionnel */}
+          <Route path="cookies" element={<Cookies />} />
           <Route
             path="*"
             element={<div className="p-12">Page introuvable</div>}
           />
-        </Routes>
-
-        <Footer />
-      </div>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
