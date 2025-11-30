@@ -52,11 +52,11 @@ export default function Footer(): JSX.Element {
             className="inline-flex items-center text-2xl font-extrabold neon-text"
           >
             <img
-              src="/logo192.png"
-              alt="Najib G"
+              src="/logo-mngdev.png"
+              alt="MNG DEV Logo"
               className="w-10 h-10 mr-2 rounded"
             />
-            Najib G
+            MNGDEV
           </Link>
 
           <p className="mt-1 text-sm text-gray-400 max-w-xs">
@@ -221,18 +221,13 @@ export default function Footer(): JSX.Element {
                 <span className="text-green-400">{newsletter.message}</span>
               )}
             </p>
-
-            <p className="mt-3 text-xs text-gray-500">
-              Front-end uniquement — aucun envoi réel tant qu'un service n'est
-              pas connecté.
-            </p>
           </form>
         </div>
       </div>
 
       <div className="border-t border-photon-magenta/6">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
-          <span>© {currentYear} Najib G — Tous droits réservés</span>
+          <span>© {currentYear} MNG DEV - Tous droits réservés</span>
 
           <div className="mt-2 md:mt-0 flex gap-4">
             <Link
