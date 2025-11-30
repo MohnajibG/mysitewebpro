@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 type NewsletterState = {
   email: string;
-  status: "idle" | "sent" | "error";
+  status: "idle" | "sending" | "sent" | "error";
   message?: string;
 };
 
@@ -15,31 +15,104 @@ export default function Footer(): JSX.Element {
     status: "idle",
   });
   const timeoutRef = useRef<number | null>(null);
-
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const currentYear = new Date().getFullYear();
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const MAILCHIMP_URL =
+    "https://mngdev.us22.list-manage.com/subscribe/post?u=90bae6b80dddf121c87280004&id=fd2a3c01e6"; // use /post endpoint for form POST
+
+  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const email = newsletter.email.trim();
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
     if (!valid) {
       setNewsletter({ email, status: "error", message: "Email invalide" });
       return;
     }
 
-    setNewsletter({
-      email,
-      status: "sent",
-      message: "Merci — inscription enregistrée localement.",
-    });
+    setNewsletter({ ...newsletter, status: "sending", message: "" });
 
-    if (timeoutRef.current) {
-      window.clearTimeout(timeoutRef.current);
+    // Ensure a hidden iframe exists (or create it)
+    const iframeName = "mc-subscribe-iframe";
+    let iframe = document.getElementById(
+      iframeName
+    ) as HTMLIFrameElement | null;
+
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.name = iframeName;
+      iframe.id = iframeName;
+      document.body.appendChild(iframe);
+      iframeRef.current = iframe;
+    } else {
+      iframeRef.current = iframe;
     }
-    timeoutRef.current = window.setTimeout(() => {
-      setNewsletter({ email: "", status: "idle" });
-      timeoutRef.current = null;
-    }, 2500);
+
+    // Listen for iframe load to detect completion (Mailchimp will load its confirmation page)
+    const onIframeLoad = () => {
+      // Mark as success (Mailchimp page loaded in iframe)
+      setNewsletter({
+        email: "",
+        status: "sent",
+        message: "Merci pour votre inscription !",
+      });
+
+      // cleanup listener
+      if (iframe) {
+        iframe.removeEventListener("load", onIframeLoad);
+      }
+
+      if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+      timeoutRef.current = window.setTimeout(() => {
+        setNewsletter({ email: "", status: "idle" });
+        timeoutRef.current = null;
+      }, 2500);
+    };
+
+    // Attach listener
+    if (iframe) {
+      iframe.addEventListener("load", onIframeLoad);
+    }
+
+    // Create temporary form and submit it to Mailchimp, target the hidden iframe
+    const form = document.createElement("form");
+    form.action = MAILCHIMP_URL;
+    form.method = "POST";
+    form.target = iframeName;
+
+    // Required Mailchimp fields
+    const emailInput = document.createElement("input");
+    emailInput.type = "hidden";
+    emailInput.name = "EMAIL";
+    emailInput.value = email;
+    form.appendChild(emailInput);
+
+    // Some Mailchimp forms include u and id as hidden fields; include them just in case
+    // (not strictly necessary if they are present in the URL, but safe to include)
+    const uMatch = MAILCHIMP_URL.match(/[?&]u=([^&]+)/);
+    const idMatch = MAILCHIMP_URL.match(/[?&]id=([^&]+)/);
+    if (uMatch) {
+      const uInput = document.createElement("input");
+      uInput.type = "hidden";
+      uInput.name = "u";
+      uInput.value = uMatch[1];
+      form.appendChild(uInput);
+    }
+    if (idMatch) {
+      const idInput = document.createElement("input");
+      idInput.type = "hidden";
+      idInput.name = "id";
+      idInput.value = idMatch[1];
+      form.appendChild(idInput);
+    }
+
+    // Append and submit
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
   };
 
   return (
@@ -61,8 +134,7 @@ export default function Footer(): JSX.Element {
 
           <p className="mt-1 text-sm text-gray-400 max-w-xs">
             Donnez vie à votre activité en ligne — site web moderne, dynamique
-            et sur-mesure. Vitrine, e-commerce, gestion clients, paiements
-            sécurisés, SEO et analytics.
+            et sur-mesure.
           </p>
 
           <div className="mt-4 flex items-center gap-3">
@@ -115,7 +187,7 @@ export default function Footer(): JSX.Element {
               </Link>
             ))}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 mt-2">
             <Link
               to="/mentions-legales"
               className="flex items-center gap-2 text-sm hover:text-photon-magenta transition-colors"
@@ -197,14 +269,16 @@ export default function Footer(): JSX.Element {
                 className="flex-1 input-neon"
                 aria-invalid={newsletter.status === "error"}
                 aria-describedby="footer-newsletter-status"
+                required
               />
 
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full btn-neon"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full btn-neon disabled:opacity-60"
+                disabled={newsletter.status === "sending"}
                 aria-label="S'inscrire à la newsletter"
               >
-                S'inscrire
+                {newsletter.status === "sending" ? "Envoi…" : "S'inscrire"}
               </button>
             </div>
 
