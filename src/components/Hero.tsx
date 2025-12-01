@@ -113,7 +113,7 @@ export default function Hero(): JSX.Element {
                 <img
                   src={logoSrc}
                   alt="MNG DEV"
-                  className="relative  object-coverw-44 h-44 md:w-56 md:h-56 rounded-full"
+                  className="relative object-cover w-44 h-44 md:w-56 md:h-56 rounded-full logo-animate"
                 />
               </div>
             </div>

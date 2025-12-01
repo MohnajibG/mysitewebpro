@@ -212,3 +212,35 @@ body {
     background-position: 0% 50%;
   }
 }
+/* Animation de rotation 360° et zoom */
+@keyframes rotateZoom {
+  0% {
+    transform: scale(1.1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1) rotate(180deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(360deg);
+  }
+}
+
+/* Classe pour l'image */
+.logo-animate {
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Au hover, animation aléatoire gauche/droite et petit zoom */
+.logo-animate:hover {
+  animation: rotateZoom 1s forwards;
+}
+
+/* Optionnel : rotation aléatoire gauche/droite */
+.logo-animate:hover {
+  animation-name: rotateZoom;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  /* Random gauche/droite via JS ou Tailwind si besoin */
+}
