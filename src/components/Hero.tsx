@@ -9,15 +9,15 @@ export default function Hero(): JSX.Element {
       id="hero"
       className="pt-24 md:pt-12 min-h-[80vh] flex items-center relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto px-6 my-20  md:mt-48 grid md:grid-cols-2 gap-14 items-center">
+      <div className="max-w-7xl mx-auto px-6 my-20  md:mt-48 grid md:grid-cols-2 gap-14 items-center">
         {/* Texte Hero */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="font-extrabold leading-tight text-centre md:text-left">
-            <span className="text-8xl md:text-6xl  block neon-text md:mb-4 md:leading-snug">
+          <h1 className="font-extrabold leading-tight md:text-left">
+            <span className="text-4xl md:text-6xl text-center block neon-text md:mb-4 md:leading-snug my-10">
               Donnez vie à votre activité en ligne
             </span>
             <span className="block mt-2 text-photon-magenta/95 font-extralight text-justify text-xl md:text-4xl  neon-text-cyan">

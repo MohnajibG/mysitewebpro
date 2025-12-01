@@ -21,20 +21,21 @@ export default function Navbar(): JSX.Element {
 
   return (
     <nav className="fixed w-full z-50 top-0 left-0 bg-black-hole-gray/60 backdrop-blur-md border-b border-photon-magenta/10">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a
-          href="#hero"
-          className="font-extrabold text-6xl neon-text hover:neon-text-cyan transition-all"
-          style={{ color: "var(--photon-magenta)" }}
-        >
-          MNGDEV
-        </a>
-        <img
-          src={logoSrc}
-          alt="MNG DEV"
-          className="relative  object-coverw-24 h-24 md:w-32 md:h-32 rounded-full leading-tight"
-        />
-
+      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="flex items-center flex-col md:flex-row gap-4 ">
+          <img
+            src={logoSrc}
+            alt="MNG DEV"
+            className="relative object-coverw-12 h-12 md:w-32 md:h-32 rounded-full leading-tight"
+          />
+          <a
+            href="#hero"
+            className="font-extrabold text-2xl md:text-6xl neon-text hover:neon-text-cyan transition-all"
+            style={{ color: "var(--photon-magenta)" }}
+          >
+            MNGDEV
+          </a>
+        </div>
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
           {[

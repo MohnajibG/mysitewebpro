@@ -179,9 +179,6 @@ body {
   .card-cyber {
     padding: 0.9rem;
   }
-  .neon-text {
-    font-size: 1.05rem;
-  }
 }
 
 /* animations (keyframes used by tailwind config are available, duplicate defs for fallback) */

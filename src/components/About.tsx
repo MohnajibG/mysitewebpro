@@ -55,7 +55,7 @@ export default function About({
           <motion.h2
             id="about-title"
             variants={item}
-            className="text-3xl font-semibold neon-text"
+            className="text-4xl font-semibold neon-text"
             style={{ color: "var(--photon-magenta)" }}
           >
             {title}
