@@ -31,6 +31,60 @@ export default function Home(): JSX.Element {
           content="Création de sites web modernes, rapides et optimisés SEO."
         />
         <meta name="twitter:image" content="https://mngdev.pro/og-image.jpg" />
+
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {`
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "MNG DEV",
+          "url": "https://mngdev.pro",
+          "logo": "https://mngdev.pro/logo-mngdev.png",
+          "sameAs": [
+            "https://www.linkedin.com/in/mohammed-najib-guerchaoui",
+            "https://twitter.com/MNGDEVPro"
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+33 6 58 74 83 08",
+              "contactType": "customer service",
+              "areaServed": "FR",
+              "availableLanguage": ["Français", "Anglais"]
+            }
+          ],
+          "address": {
+            "@type": "PostalAddress",
+           ddressLocality": "Paris",
+              "postalCode": "75000",
+            "addressCountry": "FR"
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Mohammed Najib Guerchaoui"
+          },
+          "foundingDate": "2025-01-01",
+          "description": "MNG DEV crée des sites web modernes, rapides et optimisés SEO. Développement web, branding et solutions digitales sur mesure pour entreprises et entrepreneurs."
+        },
+        {
+          "@type": "WebPage",
+          "url": "https://mngdev.pro/",
+          "name": "MNG DEV – Web & Digital",
+          "description": "MNG DEV crée des sites web modernes, rapides et optimisés SEO. Développement web, branding et solutions digitales sur mesure.",
+          "inLanguage": "fr",
+          "isPartOf": {
+            "@type": "Website",
+            "name": "MNG DEV",
+            "url": "https://mngdev.pro"
+          }
+        }
+      ]
+    }
+    `}
+        </script>
       </Helmet>
 
       <section id="hero">

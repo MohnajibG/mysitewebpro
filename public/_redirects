@@ -1,0 +1,8 @@
+# Forcer le HTTPS
+http://mngdev.pro/*  https://mngdev.pro/:splat  301!
+
+# React SPA routing (toutes les routes renvoient sur index.html)
+/*   /index.html   200
+
+# Redirection automatique vers ton sitemap
+/sitemap   /sitemap.xml   301
