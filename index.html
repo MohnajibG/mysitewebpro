@@ -22,7 +22,7 @@
     />
     <link rel="canonical" href="https://mngdev.pro/" />
 
-    <!-- Open Graph (Facebook / LinkedIn) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="MNG DEV – Web & Digital" />
     <meta
       property="og:description"
@@ -41,7 +41,7 @@
     />
     <meta name="twitter:image" content="https://mngdev.pro/og-image.jpg" />
 
-    <!-- Google Font: Outfit -->
+    <!-- Google Fonts Asynchronous -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -57,7 +57,7 @@
       />
     </noscript>
 
-    <!-- CSS -->
+    <!-- CSS Preload & Async -->
     <link
       rel="preload"
       href="/assets/index-Do4za24x.css"
@@ -93,8 +93,9 @@
             ],
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "Paris",
-              "postalCode": "75000",
+              "streetAddress": "1 rue des Platanes",
+              "addressLocality": "Chessy",
+              "postalCode": "77177",
               "addressCountry": "FR"
             },
             "founder": {
@@ -123,6 +124,6 @@
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>
