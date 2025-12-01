@@ -258,7 +258,7 @@ export default function Footer(): JSX.Element {
                     status: "idle",
                   })
                 }
-                placeholder="votre@email.tld"
+                placeholder="votre@email.fr"
                 className="flex-1 input-neon"
                 aria-invalid={newsletter.status === "error"}
                 aria-describedby="footer-newsletter-status"
