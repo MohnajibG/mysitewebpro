@@ -45,7 +45,7 @@ export default function About({
       aria-labelledby="about-title"
       className="py-20 bg-black-hole-gray/80"
     >
-      <div className="max-w-6xl mx-auto px-6 grid gap-8 md:grid-cols-2 items-start">
+      <div className="max-w-7xl mx-auto px-6 grid gap-8 md:grid-cols-2 items-start">
         <motion.div
           variants={container}
           initial="hidden"
@@ -123,11 +123,11 @@ export default function About({
         >
           {/* cyan subtle glow */}
           <div
-            className="absolute -inset-8 blur-2xl opacity-30 glow-cyan"
+            className="absolute -inset-8 blur-2xl opacity-30 glow-cyan md:mt-40"
             aria-hidden
           />
 
-          <div className="h-56 md:h-64 rounded-lg flex items-center justify-center ">
+          <div className="h-56 md:h-64 rounded-lg flex items-center justify-center  ">
             <motion.img
               src={illustration}
               alt="Illustration animée"
