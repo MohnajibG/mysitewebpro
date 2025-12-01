@@ -169,7 +169,7 @@ export default function Footer(): JSX.Element {
         </div>
 
         {/* Quick links (anchors + legal pages) */}
-        <nav aria-label="Liens rapides" className="flex flex-col md:gap-2 my-5">
+        <nav aria-label="Liens rapides" className="flex flex-col md:gap-2 5">
           <h3 className="text-sm font-semibold text-gray-300">Navigation</h3>
 
           <div className="flex flex-col gap-2">
