@@ -1036,7 +1036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^24.10.1":
+"@types/node@npm:*, @types/node@npm:^24.10.1, @types/node@npm:^24.9.2":
   version: 24.10.1
   resolution: "@types/node@npm:24.10.1"
   dependencies:
@@ -1060,6 +1060,15 @@ __metadata:
   dependencies:
     csstype: ^3.2.2
   checksum: b1f4c9a45862ea392b9ead060a5b5730b4c41b21fde097db35e639a8a0978460468d8da87f47226230bd4681d6de48ffee695595540084a8a849dde027c66a46
+  languageName: node
+  linkType: hard
+
+"@types/sax@npm:^1.2.1":
+  version: 1.2.7
+  resolution: "@types/sax@npm:1.2.7"
+  dependencies:
+    "@types/node": "*"
+  checksum: 7ece5fbb5d9c8fc76ab0de2f99d705edf92f18e701d4f9d9b0647275e32eb65e656c1badf9dfaa12f4e1ff3e250561c8c9cfe79e8b5f33dd1417ac0f1804f6cc
   languageName: node
   linkType: hard
 
@@ -1265,6 +1274,13 @@ __metadata:
   dependencies:
     color-convert: ^2.0.1
   checksum: 513b44c3b2105dd14cc42a19271e80f386466c4be574bccf60b627432f9198571ebf4ab1e4c3ba17347658f4ee1711c163d574248c0c1cdc2d5917a0ad582ec4
+  languageName: node
+  linkType: hard
+
+"arg@npm:^5.0.0":
+  version: 5.0.2
+  resolution: "arg@npm:5.0.2"
+  checksum: 6c69ada1a9943d332d9e5382393e897c500908d91d5cb735a01120d5f71daf1b339b7b8980cbeaba8fd1afc68e658a739746179e4315a26e8a28951ff9930078
   languageName: node
   linkType: hard
 
@@ -2483,6 +2499,7 @@ __metadata:
     react-helmet-async: ^2.0.5
     react-icons: ^5.5.0
     react-router-dom: ^7.9.6
+    sitemap: ^9.0.0
     tailwindcss: ^4
     typescript: ~5.9.3
     typescript-eslint: ^8.46.4
@@ -2900,6 +2917,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sax@npm:^1.4.1":
+  version: 1.4.3
+  resolution: "sax@npm:1.4.3"
+  checksum: 136a202eee9364f312fb1c6abadb045ef430a7468853f804758d8f2dc8d2560801245620e2bfd4ead2e332c025bef50865271974d142a0c26f69d5fc3de9baf1
+  languageName: node
+  linkType: hard
+
 "scheduler@npm:^0.27.0":
   version: 0.27.0
   resolution: "scheduler@npm:0.27.0"
@@ -2952,6 +2976,20 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
+  languageName: node
+  linkType: hard
+
+"sitemap@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "sitemap@npm:9.0.0"
+  dependencies:
+    "@types/node": ^24.9.2
+    "@types/sax": ^1.2.1
+    arg: ^5.0.0
+    sax: ^1.4.1
+  bin:
+    sitemap: dist/esm/cli.js
+  checksum: 99d5c76c878ca9fca331b5de9353fc491c8c4464d4bb2555fa6d8f4a15fdd987b0f7971ed3e45801e30fc81fb9e97a3526204b5298e5cc5e8c84850452266002
   languageName: node
   linkType: hard
 

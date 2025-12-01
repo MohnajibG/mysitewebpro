@@ -21,11 +21,8 @@ export default function Home(): JSX.Element {
           property="og:description"
           content="Création de sites web modernes, rapides et optimisés SEO. Développement web & solutions digitales."
         />
-        <meta
-          property="og:image"
-          content="https://mngdev.netlify.app/og-image.jpg"
-        />
-        <meta property="og:url" content="https://mngdev.netlify.app/" />
+        <meta property="og:image" content="https://mngdev.pro/og-image.jpg" />
+        <meta property="og:url" content="https://mngdev.pro/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="MNG DEV – Web & Digital" />
@@ -33,10 +30,7 @@ export default function Home(): JSX.Element {
           name="twitter:description"
           content="Création de sites web modernes, rapides et optimisés SEO."
         />
-        <meta
-          name="twitter:image"
-          content="https://mngdev.netlify.app/og-image.jpg"
-        />
+        <meta name="twitter:image" content="https://mngdev.pro/og-image.jpg" />
       </Helmet>
 
       <section id="hero">

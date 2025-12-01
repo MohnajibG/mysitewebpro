@@ -295,6 +295,17 @@ export default function Footer(): JSX.Element {
       <div className="border-t border-photon-magenta/6">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
           <span>© {currentYear} MNG DEV - Tous droits réservés</span>
+          <div className="flex items-center gap-4 text-xs">
+            <a href="/robots.txt" className="hover:underline">
+              robots.txt
+            </a>
+            <a href="/sitemap.xml" className="hover:underline">
+              sitemap
+            </a>
+            <a href="#top" className="hover:underline">
+              Haut de page
+            </a>
+          </div>
 
           <div className="mt-2 md:mt-0 flex gap-4">
             <Link
