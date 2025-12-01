@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -9,24 +10,26 @@ import type { JSX } from "react";
 
 export default function App(): JSX.Element {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
+    <HelmetProvider>
+      <BrowserRouter>
+        <ScrollToTop />
 
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="mentions-legales" element={<MentionsLegales />} />
-          <Route
-            path="politique-confidentialite"
-            element={<PolitiqueConfidentialite />}
-          />
-          <Route path="cookies" element={<Cookies />} />
-          <Route
-            path="*"
-            element={<div className="p-12">Page introuvable</div>}
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="mentions-legales" element={<MentionsLegales />} />
+            <Route
+              path="politique-confidentialite"
+              element={<PolitiqueConfidentialite />}
+            />
+            <Route path="cookies" element={<Cookies />} />
+            <Route
+              path="*"
+              element={<div className="p-12">Page introuvable</div>}
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }

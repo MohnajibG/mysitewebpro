@@ -122,7 +122,7 @@ export default function Navbar(): JSX.Element {
 
               <motion.a
                 href="#contact"
-                className="mt-2 btn-ghost-neon inline-flex items-center justify-center px-4 py-2 rounded-md"
+                className="mt-2 btn-ghost-neon inline-flex items-center justify-center px-4 py-2 rounded-full"
                 whileHover={{ scale: 1.05, boxShadow: "0 0 12px #00ffff" }}
                 onClick={() => setOpen(false)}
               >
