@@ -85,7 +85,7 @@ body {
 /* Ghost / outline neon */
 .btn-ghost-neon {
   padding: 0.55rem 1rem;
-  border-radius: 0.6rem;
+  border-radius: 9999px;
   border: 1px solid rgba(255, 51, 204, 0.12);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
   color: var(--neon-cyan);

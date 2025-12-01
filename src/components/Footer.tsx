@@ -1,7 +1,8 @@
 import React, { useState, useRef, type JSX } from "react";
 import { FiMail, FiPhone, FiMapPin, FiChevronRight } from "react-icons/fi";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 type NewsletterState = {
   email: string;
@@ -133,38 +134,30 @@ export default function Footer(): JSX.Element {
           </Link>
 
           <p className="mt-1 text-sm text-gray-400 max-w-xs">
-            Donnez vie à votre activité en ligne — site web moderne, dynamique
-            et sur-mesure.
+            Donnez vie à votre activité en ligne, site web moderne, dynamique et
+            sur-mesure.
           </p>
 
           <div className="mt-4 flex items-center gap-3">
-            <a
+            <motion.a
               href="https://github.com/MohnajibG"
               target="_blank"
-              rel="noopener noreferrer"
               aria-label="Github"
-              className="p-2 rounded-md hover:glow-magenta transition"
+              className="p-2 rounded-full"
+              whileHover={{ scale: 1.1, boxShadow: "0 0 12px #ff33cc" }}
             >
-              <FaGithub size={20} />
-            </a>
+              <FaGithub size={16} />
+            </motion.a>
 
-            <a
+            <motion.a
               href="https://www.linkedin.com/in/najib-guerchaoui/"
               target="_blank"
-              rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="p-2 rounded-md hover:glow-cyan transition"
+              className="p-2 rounded-full"
+              whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
             >
-              <FaLinkedin size={20} />
-            </a>
-
-            <a
-              href="#"
-              aria-label="Twitter"
-              className="p-2 rounded-md hover:glow-magenta transition"
-            >
-              <FaTwitter size={20} />
-            </a>
+              <FaLinkedin size={16} />
+            </motion.a>
           </div>
         </div>
 

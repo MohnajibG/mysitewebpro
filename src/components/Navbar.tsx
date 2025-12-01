@@ -64,17 +64,19 @@ export default function Navbar(): JSX.Element {
 
           <div className="ml-3 flex items-center gap-3">
             <motion.a
-              href="#"
+              href="https://github.com/MohnajibG"
+              target="_blank"
               aria-label="Github"
-              className="p-2 rounded-md"
+              className="p-2 rounded-full"
               whileHover={{ scale: 1.1, boxShadow: "0 0 12px #ff33cc" }}
             >
               <FaGithub size={16} />
             </motion.a>
             <motion.a
-              href="#"
+              href="https://www.linkedin.com/in/najib-guerchaoui/"
+              target="_blank"
               aria-label="LinkedIn"
-              className="p-2 rounded-md"
+              className="p-2 rounded-full"
               whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
             >
               <FaLinkedin size={16} />
