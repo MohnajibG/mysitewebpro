@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import logoSrc from "../assets/logo-mngdev.png";
 
-export default function Hero(): JSX.Element {
+const Hero = (): JSX.Element => {
   return (
     <section
       id="hero"
@@ -212,4 +212,6 @@ export default function Hero(): JSX.Element {
       />
     </section>
   );
-}
+};
+
+export default Hero;

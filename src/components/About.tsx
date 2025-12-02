@@ -20,7 +20,7 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function About({
+const About = ({
   title = "À propos",
   subtitle = "Présentation rapide de votre activité et de votre approche",
   paragraphs = [
@@ -38,7 +38,7 @@ export default function About({
     "Optimisation SEO & performances",
     "Maintenance & sauvegardes",
   ],
-}: AboutProps): JSX.Element {
+}: AboutProps): JSX.Element => {
   return (
     <section
       id="about"
@@ -141,4 +141,6 @@ export default function About({
       </div>
     </section>
   );
-}
+};
+
+export default About;

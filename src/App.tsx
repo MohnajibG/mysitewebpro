@@ -8,7 +8,7 @@ import Cookies from "./pages/Cookies";
 import ScrollToTop from "./components/ScrollToTop";
 import type { JSX } from "react";
 
-export default function App(): JSX.Element {
+const App = (): JSX.Element => {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -33,4 +33,5 @@ export default function App(): JSX.Element {
       </BrowserRouter>
     </HelmetProvider>
   );
-}
+};
+export default App;

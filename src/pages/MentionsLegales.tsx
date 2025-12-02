@@ -12,7 +12,7 @@ type Props = {
   publicationDate?: string;
 };
 
-export default function MentionsLegales({
+const MentionsLegales = ({
   companyName = "MNGDEV PRO",
   siren = "SIRET / SIREN : 94 020 754 1000 19",
   address = "Paris, France",
@@ -26,7 +26,7 @@ export default function MentionsLegales({
     website: "https://www.netlify.com",
   },
   publicationDate = "01 janvier 2025",
-}: Props): JSX.Element {
+}: Props): JSX.Element => {
   return (
     <>
       <Helmet>
@@ -185,4 +185,6 @@ export default function MentionsLegales({
       </main>
     </>
   );
-}
+};
+
+export default MentionsLegales;

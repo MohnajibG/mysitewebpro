@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-export default function Cookies(): JSX.Element {
+const Cookies = (): JSX.Element => {
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 prose prose-invert mt-50">
       <h1 className="neon-text text-4xl mb-6">Cookies</h1>
@@ -36,4 +36,6 @@ export default function Cookies(): JSX.Element {
       </footer>
     </main>
   );
-}
+};
+
+export default Cookies;

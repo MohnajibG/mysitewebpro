@@ -3,9 +3,11 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import logoSrc from "../assets/logo-mngdev.png";
+import useHideOnIdleScroll from "../hooks/useHideOnIdleScroll";
 
-export default function Navbar(): JSX.Element {
+const Navbar = (): JSX.Element => {
   const [open, setOpen] = useState(false);
+  const hidden = useHideOnIdleScroll(1200); //
 
   const menuVariants: Variants = {
     hidden: { opacity: 0, y: -20 },
@@ -20,7 +22,11 @@ export default function Navbar(): JSX.Element {
   const linkHover = { scale: 1.05, textShadow: "0 0 8px #ff33cc" };
 
   return (
-    <nav className="fixed w-full z-50 top-0 left-0 bg-black-hole-gray/60 backdrop-blur-md border-b border-photon-magenta/10">
+    <nav
+      className={`fixed w-full z-50 top-0 left-0 bg-black-hole-gray/60 backdrop-blur-md border-b border-photon-magenta/10 ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <div className="flex items-center flex-col md:flex-row gap-4 ">
           <img
@@ -158,4 +164,5 @@ export default function Navbar(): JSX.Element {
       </AnimatePresence>
     </nav>
   );
-}
+};
+export default Navbar;

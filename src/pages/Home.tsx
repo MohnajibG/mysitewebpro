@@ -5,7 +5,7 @@ import About from "../components/About";
 import Contact from "../components/Contact";
 import type { JSX } from "react";
 
-export default function Home(): JSX.Element {
+const Home = (): JSX.Element => {
   return (
     <>
       <Helmet>
@@ -101,4 +101,5 @@ export default function Home(): JSX.Element {
       </section>
     </>
   );
-}
+};
+export default Home;

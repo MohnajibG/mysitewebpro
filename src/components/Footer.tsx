@@ -10,7 +10,7 @@ type NewsletterState = {
   message?: string;
 };
 
-export default function Footer(): JSX.Element {
+const Footer = (): JSX.Element => {
   const [newsletter, setNewsletter] = useState<NewsletterState>({
     email: "",
     status: "idle",
@@ -337,4 +337,6 @@ export default function Footer(): JSX.Element {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

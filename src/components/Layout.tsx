@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-export default function Layout(): JSX.Element {
+const Layout = (): JSX.Element => {
   return (
     <div className="min-h-screen bg-[#121212] text-white selection:bg-photon-magenta selection:text-black">
       <Navbar />
@@ -18,4 +18,6 @@ export default function Layout(): JSX.Element {
       <Footer />
     </div>
   );
-}
+};
+
+export default Layout;

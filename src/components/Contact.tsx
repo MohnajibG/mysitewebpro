@@ -12,7 +12,7 @@ type Form = {
 };
 type Status = "idle" | "sending" | "sent" | "error";
 
-export default function Contact(): JSX.Element {
+const Contact = (): JSX.Element => {
   const [form, setForm] = useState<Form>({
     name: "",
     email: "",
@@ -384,4 +384,6 @@ export default function Contact(): JSX.Element {
       </div>
     </>
   );
-}
+};
+
+export default Contact;

@@ -31,7 +31,7 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Features({ items }: Props): JSX.Element {
+const Features = ({ items }: Props): JSX.Element => {
   const defaultItems: Feature[] = [
     {
       id: "f-forms",
@@ -109,7 +109,7 @@ export default function Features({ items }: Props): JSX.Element {
 
   return (
     <section id="features" aria-labelledby="features-title" className="py-16">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6 md:py-24">
         <h2
           id="features-title"
           className="text-3xl font-semibold mb-6 neon-text"
@@ -173,4 +173,5 @@ export default function Features({ items }: Props): JSX.Element {
       </div>
     </section>
   );
-}
+};
+export default Features;

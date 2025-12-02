@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-export default function PolitiqueConfidentialite(): JSX.Element {
+const PolitiqueConfidentialite = (): JSX.Element => {
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 prose prose-invert mt-50">
       <h1 className="neon-text text-4xl mb-6">Politique de confidentialité</h1>
@@ -48,4 +48,6 @@ export default function PolitiqueConfidentialite(): JSX.Element {
       </footer>
     </main>
   );
-}
+};
+
+export default PolitiqueConfidentialite;
