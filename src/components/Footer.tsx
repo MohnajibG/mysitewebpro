@@ -167,9 +167,21 @@ export default function Footer(): JSX.Element {
 
           <div className="flex flex-col gap-2">
             {[
-              { label: "Services", to: "/#features", hoverClass: "neon-cyan" },
-              { label: "À propos", to: "/#about", hoverClass: "glitch-teal" },
-              { label: "Contact", to: "/#contact", hoverClass: "ion-yellow" },
+              {
+                label: "Services",
+                to: "/home#features",
+                hoverClass: "neon-cyan",
+              },
+              {
+                label: "À propos",
+                to: "/home#about",
+                hoverClass: "glitch-teal",
+              },
+              {
+                label: "Contact",
+                to: "/home#contact",
+                hoverClass: "ion-yellow",
+              },
             ].map((item) => (
               <Link
                 key={item.to}
