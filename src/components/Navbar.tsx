@@ -39,9 +39,9 @@ export default function Navbar(): JSX.Element {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
           {[
-            { label: "Services", href: "#features" },
-            { label: "À propos", href: "#about" },
-            { label: "Contact", href: "#contact" },
+            { label: "Services", href: "/home#features" },
+            { label: "À propos", href: "/home#about" },
+            { label: "Contact", href: "/home#contact" },
           ].map((item) => (
             <motion.a
               key={item.href}
@@ -54,7 +54,7 @@ export default function Navbar(): JSX.Element {
           ))}
 
           <motion.a
-            href="#contact"
+            href="/home#contact"
             className="ml-2 btn-ghost-neon text-sm hidden lg:inline-flex"
             whileHover={{ scale: 1.05, boxShadow: "0 0 12px #00ffff" }}
             aria-label="Demander un devis"
@@ -107,9 +107,9 @@ export default function Navbar(): JSX.Element {
           >
             <div className="flex flex-col gap-3 py-4">
               {[
-                { label: "Services", href: "#features" },
-                { label: "À propos", href: "#about" },
-                { label: "Contact", href: "#contact" },
+                { label: "Services", href: "/home#features" },
+                { label: "À propos", href: "/home#about" },
+                { label: "Contact", href: "/home#contact" },
               ].map((item) => (
                 <motion.a
                   key={item.href}
@@ -123,7 +123,7 @@ export default function Navbar(): JSX.Element {
               ))}
 
               <motion.a
-                href="#contact"
+                href="/home#contact"
                 className="mt-2 btn-ghost-neon inline-flex items-center justify-center px-4 py-2 rounded-full"
                 whileHover={{ scale: 1.05, boxShadow: "0 0 12px #00ffff" }}
                 onClick={() => setOpen(false)}

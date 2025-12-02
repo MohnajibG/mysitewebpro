@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
@@ -16,8 +16,9 @@ export default function App(): JSX.Element {
 
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="mentions-legales" element={<MentionsLegales />} />
+            <Route path="home" element={<Home />} />
             <Route
               path="politique-confidentialite"
               element={<PolitiqueConfidentialite />}
