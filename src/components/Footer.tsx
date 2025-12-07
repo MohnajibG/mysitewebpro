@@ -1,6 +1,8 @@
 import React, { useState, useRef, type JSX } from "react";
 import { FiMail, FiPhone, FiMapPin, FiChevronRight } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -157,6 +159,15 @@ const Footer = (): JSX.Element => {
               whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
             >
               <FaLinkedin size={16} />
+            </motion.a>
+            <motion.a
+              href="https://x.com/mngdevpro"
+              target="_blank"
+              aria-label="XTwitter"
+              className="p-2 rounded-full"
+              whileHover={{ scale: 1.1, boxShadow: "0 0 12px #1d59e5" }}
+            >
+              <FaXTwitter size={16} />
             </motion.a>
           </div>
         </div>

@@ -4,10 +4,13 @@ import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import logoSrc from "../assets/logo-mngdev.png";
 import useHideOnIdleScroll from "../hooks/useHideOnIdleScroll";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Navbar = (): JSX.Element => {
   const [open, setOpen] = useState(false);
-  const hidden = useHideOnIdleScroll(1200); //
+  const [hovering, setHovering] = useState(false);
+
+  const hidden = useHideOnIdleScroll(1200);
 
   const menuVariants: Variants = {
     hidden: { opacity: 0, y: -20 },
@@ -16,15 +19,17 @@ const Navbar = (): JSX.Element => {
       y: 0,
       transition: { type: "spring" as const, stiffness: 120, damping: 20 },
     },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.6 } },
   };
 
   const linkHover = { scale: 1.05, textShadow: "0 0 8px #ff33cc" };
 
   return (
     <nav
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
       className={`fixed w-full z-50 top-0 left-0 bg-black-hole-gray/60 backdrop-blur-md border-b border-photon-magenta/10 ${
-        hidden ? "-translate-y-full" : "translate-y-0"
+        hidden && !hovering ? "-translate-y-full" : "translate-y-0"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -52,7 +57,7 @@ const Navbar = (): JSX.Element => {
             <motion.a
               key={item.href}
               href={item.href}
-              className="text-sm text-gray-300 hover:text-photon-magenta transition-all"
+              className="text-ml text-gray-300 hover:text-photon-magenta transition-all"
               whileHover={linkHover}
             >
               {item.label}
@@ -86,6 +91,15 @@ const Navbar = (): JSX.Element => {
               whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
             >
               <FaLinkedin size={16} />
+            </motion.a>
+            <motion.a
+              href="https://x.com/mngdevpro"
+              target="_blank"
+              aria-label="XTwitter"
+              className="p-2 rounded-full"
+              whileHover={{ scale: 1.1, boxShadow: "0 0 12px #1d59e5" }}
+            >
+              <FaXTwitter size={16} />
             </motion.a>
           </div>
         </div>
@@ -139,7 +153,7 @@ const Navbar = (): JSX.Element => {
 
               <div className="mt-3 flex items-center gap-3">
                 <motion.a
-                  href="#"
+                  href="https://github.com/MohnajibG"
                   aria-label="Github"
                   className="p-2 rounded-md"
                   whileHover={{ scale: 1.1, boxShadow: "0 0 12px #ff33cc" }}
@@ -147,12 +161,21 @@ const Navbar = (): JSX.Element => {
                   <FaGithub size={16} />
                 </motion.a>
                 <motion.a
-                  href="#"
+                  href="https://www.linkedin.com/in/najib-guerchaoui/"
                   aria-label="LinkedIn"
                   className="p-2 rounded-md"
                   whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
                 >
                   <FaLinkedin size={16} />
+                </motion.a>
+                <motion.a
+                  href="https://x.com/mngdevpro"
+                  target="_blank"
+                  aria-label="XTwitter"
+                  className="p-2 rounded-full"
+                  whileHover={{ scale: 1.1, boxShadow: "0 0 12px #1d59e5" }}
+                >
+                  <FaXTwitter size={16} />
                 </motion.a>
                 <span className="ml-auto text-xs text-gray-400">
                   © {new Date().getFullYear()}
