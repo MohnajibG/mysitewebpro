@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "photon-magenta": "#ff33cc",
+        "photon-magenta": "#ee7fd2",
         "neon-cyan": "#00ffff",
         "dark-matter-indigo": "#2e2b5f",
         "ion-yellow": "#fff700",

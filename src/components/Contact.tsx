@@ -44,7 +44,7 @@ const Contact = (): JSX.Element => {
   const CONTACT_EMAIL =
     import.meta.env.VITE_CONTACT_EMAIL || "mngdevpro@gmail.com";
   const CONTACT_PHONE =
-    import.meta.env.VITE_CONTACT_PHONE || "+33 6 58 47 83 08";
+    import.meta.env.VITE_CONTACT_PHONE || "+33 6 58 74 83 08";
   const LOGO_URL =
     import.meta.env.VITE_LOGO_URL || `${location.origin}/logo-mngdev.png`;
 
@@ -52,39 +52,33 @@ const Contact = (): JSX.Element => {
     if (PUBLIC_KEY) emailjs.init(PUBLIC_KEY);
   }, [PUBLIC_KEY]);
 
-  // show modal automatically when status becomes 'sent'
+  // clear pending timers on unmount
   useEffect(() => {
-    if (status === "sent") {
-      // open modal
-      setModalVisible(true);
-      // auto-close modal after 5s
+    return () => {
       if (modalTimeoutRef.current) window.clearTimeout(modalTimeoutRef.current);
-      modalTimeoutRef.current = window.setTimeout(() => {
-        setModalVisible(false);
-        modalTimeoutRef.current = null;
-      }, 5000);
-
-      // also reset status to idle after small delay so UI buttons re-enable (keeps existing behavior)
       if (resetStatusTimeoutRef.current)
         window.clearTimeout(resetStatusTimeoutRef.current);
-      resetStatusTimeoutRef.current = window.setTimeout(() => {
-        setStatus("idle");
-        resetStatusTimeoutRef.current = null;
-      }, 2200);
-    }
-
-    return () => {
-      if (modalTimeoutRef.current) {
-        window.clearTimeout(modalTimeoutRef.current);
-        modalTimeoutRef.current = null;
-      }
-      if (resetStatusTimeoutRef.current) {
-        window.clearTimeout(resetStatusTimeoutRef.current);
-        resetStatusTimeoutRef.current = null;
-      }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status]);
+  }, []);
+
+  // open the success modal and schedule its auto-close + status reset;
+  // called directly wherever the submission succeeds (no derived-state effect)
+  const showSentModal = () => {
+    setModalVisible(true);
+
+    if (modalTimeoutRef.current) window.clearTimeout(modalTimeoutRef.current);
+    modalTimeoutRef.current = window.setTimeout(() => {
+      setModalVisible(false);
+      modalTimeoutRef.current = null;
+    }, 5000);
+
+    if (resetStatusTimeoutRef.current)
+      window.clearTimeout(resetStatusTimeoutRef.current);
+    resetStatusTimeoutRef.current = window.setTimeout(() => {
+      setStatus("idle");
+      resetStatusTimeoutRef.current = null;
+    }, 2200);
+  };
 
   const closeModal = () => {
     if (modalTimeoutRef.current) {
@@ -123,7 +117,7 @@ const Contact = (): JSX.Element => {
           timeline: "",
           message: "",
         });
-        // status reset handled by effect above
+        showSentModal();
       }, 900);
       return;
     }
@@ -161,7 +155,7 @@ const Contact = (): JSX.Element => {
         timeline: "",
         message: "",
       });
-      // status reset and modal handled by effect above
+      showSentModal();
     } catch (err) {
       console.error("EmailJS error:", err);
       setError("Échec de l'envoi — veuillez réessayer plus tard.");

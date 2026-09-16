@@ -7,8 +7,11 @@ import {
   FiShield,
   FiShoppingCart,
   FiDatabase,
-  FiMail,
+  FiBriefcase,
+  FiCreditCard,
+  FiTool,
 } from "react-icons/fi";
+import { FaWallet } from "react-icons/fa";
 
 type Feature = {
   id: string;
@@ -34,46 +37,53 @@ const item = {
 const Features = ({ items }: Props): JSX.Element => {
   const defaultItems: Feature[] = [
     {
-      id: "f-forms",
-      title: "Formulaires avancés",
+      id: "f-vitrine",
+      title: "Sites vitrines & e-commerce",
       description:
-        "Création de formulaires de contact, devis et commandes avec validation, upload d’images et intégration aux workflows.",
-      icon: <FiMail size={20} />,
+        "Sites professionnels sur-mesure, boutiques en ligne, formulaires de contact et de devis, pensés pour convertir.",
+      icon: <FiMonitor size={20} />,
     },
     {
-      id: "f-cms",
-      title: "CMS & Headless",
+      id: "f-gestion",
+      title: "Applications de gestion & back-office",
       description:
-        "Intégration de CMS (headless ou classique) pour gérer facilement le contenu sans déployer de code.",
-      icon: <FiDatabase size={20} />,
+        "Espaces admin, employé et client, gestion des rendez-vous, rôles et permissions sur-mesure.",
+      icon: <FiBriefcase size={20} />,
     },
     {
-      id: "f-analytics",
-      title: "Analytics & suivi",
+      id: "f-marketplace",
+      title: "Marketplaces & plateformes",
       description:
-        "Configuration d’outils d’analyse, tableaux de bord et tracking des conversions pour mesurer la performance.",
-      icon: <FiCpu size={20} />,
+        "Dépôt d’annonces, mise en relation entre utilisateurs et gestion des transactions type marketplace.",
+      icon: <FiShoppingCart size={20} />,
+    },
+    {
+      id: "f-web3",
+      title: "Applications & intégrations Web3",
+      description:
+        "Connexion wallet (WalletConnect, MetaMask), interaction avec des smart contracts, swaps et staking.",
+      icon: <FaWallet size={20} />,
     },
     {
       id: "f-payments",
       title: "Paiements en ligne",
       description:
-        "Intégration Stripe / solutions de paiement sécurisées, gestion des paniers et suivi des transactions.",
-      icon: <FiShoppingCart size={20} />,
+        "Intégration Stripe (paiement classique et onramp crypto), gestion des paniers et suivi des transactions.",
+      icon: <FiCreditCard size={20} />,
     },
     {
       id: "f-auth",
       title: "Authentification & sécurité",
       description:
-        "Systèmes d’authentification (email, OAuth), gestion des rôles et bonnes pratiques de sécurité.",
+        "Authentification email / OAuth ou signature wallet, gestion des rôles et bonnes pratiques de sécurité.",
       icon: <FiShield size={20} />,
     },
     {
       id: "f-api",
-      title: "Intégration API",
+      title: "Intégration API & backend",
       description:
-        "Connexion à des APIs tierces (ERP, CRM, services externes) et développement d’API pour échanger des données.",
-      icon: <FiMonitor size={20} />,
+        "APIs REST (Node/Express, FastAPI), bases de données (MongoDB) et connexion à des services tiers.",
+      icon: <FiDatabase size={20} />,
     },
     {
       id: "f-seo",
@@ -94,14 +104,7 @@ const Features = ({ items }: Props): JSX.Element => {
       title: "Maintenance & support",
       description:
         "Forfaits de maintenance, mises à jour de sécurité, sauvegardes et support post-lancement.",
-      icon: <FiDatabase size={20} />,
-    },
-    {
-      id: "f-access",
-      title: "Accessibilité",
-      description:
-        "Conformité WCAG de base et améliorations d’accessibilité pour une meilleure expérience utilisateur.",
-      icon: <FiMonitor size={20} />,
+      icon: <FiTool size={20} />,
     },
   ];
 

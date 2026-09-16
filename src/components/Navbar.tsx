@@ -1,5 +1,5 @@
 import { useState, type JSX } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiFolder } from "react-icons/fi";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import logoSrc from "../assets/logo-mngdev.png";
@@ -74,6 +74,15 @@ const Navbar = (): JSX.Element => {
           </motion.a>
 
           <div className="ml-3 flex items-center gap-3">
+            <motion.a
+              href="https://portfolio-mng.netlify.app/"
+              target="_blank"
+              aria-label="Portfolio"
+              className="p-2 rounded-full"
+              whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
+            >
+              <FiFolder size={16} />
+            </motion.a>
             <motion.a
               href="https://github.com/MohnajibG"
               target="_blank"
@@ -152,6 +161,14 @@ const Navbar = (): JSX.Element => {
               </motion.a>
 
               <div className="mt-3 flex items-center gap-3">
+                <motion.a
+                  href="https://portfolio-mng.netlify.app/"
+                  aria-label="Portfolio"
+                  className="p-2 rounded-md"
+                  whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
+                >
+                  <FiFolder size={16} />
+                </motion.a>
                 <motion.a
                   href="https://github.com/MohnajibG"
                   aria-label="Github"

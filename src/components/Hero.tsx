@@ -127,7 +127,10 @@ const Hero = (): JSX.Element => {
                   <ul className="list-disc ml-4">
                     <li>Phase 1 : Kick-off, maquettes & architecture</li>
                     <li>Phase 2 : Développement des pages principales</li>
-                    <li>Phase 3 : Intégration e-commerce, formulaires & API</li>
+                    <li>
+                      Phase 3 : Fonctionnalités métier (e-commerce,
+                      back-office, API ou Web3)
+                    </li>
                     <li>Phase 4 : Tests, optimisation, déploiement</li>
                   </ul>
                   Dépendances : contenu client, accès hébergement/API,
@@ -161,7 +164,8 @@ const Hero = (): JSX.Element => {
                 <div className="text-gray-300 font-medium text-sm">
                   Livrables
                 </div>
-                Code React + assets + intégration e-commerce,
+                Code React/TypeScript + assets + intégrations métier
+                (e-commerce, back-office, Web3 selon le projet),
                 <br />
                 Maquettes UI/UX (si fournies), documentation technique,
                 <br />
@@ -177,11 +181,10 @@ const Hero = (): JSX.Element => {
               <div>
                 <div className="text-gray-300 font-medium text-sm">Options</div>
                 <div>
-                  Formulaire, CMS, Analytics, Paiement en ligne,
-                  Authentification,
+                  Formulaire, Analytics, Paiement en ligne, Authentification,
                   <br />
-                  Gestion de contenu dynamique, Intégration API, Optimisation
-                  SEO,
+                  Intégration Web3 (wallet, smart contract), Intégration API,
+                  Optimisation SEO,
                   <br />
                   Responsive Design, Sécurité des données,
                   <br />
@@ -191,9 +194,10 @@ const Hero = (): JSX.Element => {
                   Déploiement CI/CD, Versionning Git/GitHub, Maintenance & mise
                   à jour,
                   <br />
-                  Intégration de bases de données (si nécessaire),
+                  Intégration de bases de données (MongoDB, etc.),
                   <br />
-                  Intégration de services tiers (Google Maps, newsletters, etc.)
+                  Intégration de services tiers (Stripe, Google Maps,
+                  newsletters, etc.)
                 </div>
               </div>
             </div>

@@ -1,5 +1,11 @@
 import React, { useState, useRef, type JSX } from "react";
-import { FiMail, FiPhone, FiMapPin, FiChevronRight } from "react-icons/fi";
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiChevronRight,
+  FiFolder,
+} from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -18,11 +24,10 @@ const Footer = (): JSX.Element => {
     status: "idle",
   });
   const timeoutRef = useRef<number | null>(null);
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const currentYear = new Date().getFullYear();
 
   const MAILCHIMP_URL =
-    "https://mngdev.us22.list-manage.com/subscribe/post?u=90bae6b80dddf121c87280004&id=fd2a3c01e6"; // use /post endpoint for form POST
+    "https://mngdev.us22.list-manage.com/subscribe/post-json?u=90bae6b80dddf121c87280004&id=fd2a3c01e6";
 
   const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,85 +42,54 @@ const Footer = (): JSX.Element => {
 
     setNewsletter({ ...newsletter, status: "sending", message: "" });
 
-    // Ensure a hidden iframe exists (or create it)
-    const iframeName = "mc-subscribe-iframe";
-    let iframe = document.getElementById(
-      iframeName
-    ) as HTMLIFrameElement | null;
+    // Mailchimp's classic embedded form has no CORS-friendly JSON endpoint,
+    // so we use its JSONP callback to actually read back success/error
+    // instead of guessing from a hidden iframe load event.
+    const callbackName = `mcSubscribeCallback_${Date.now()}`;
+    const win = window as unknown as Record<string, unknown>;
 
-    if (!iframe) {
-      iframe = document.createElement("iframe");
-      iframe.style.display = "none";
-      iframe.name = iframeName;
-      iframe.id = iframeName;
-      document.body.appendChild(iframe);
-      iframeRef.current = iframe;
-    } else {
-      iframeRef.current = iframe;
-    }
-
-    // Listen for iframe load to detect completion (Mailchimp will load its confirmation page)
-    const onIframeLoad = () => {
-      // Mark as success (Mailchimp page loaded in iframe)
-      setNewsletter({
-        email: "",
-        status: "sent",
-        message: "Merci pour votre inscription !",
-      });
-
-      // cleanup listener
-      if (iframe) {
-        iframe.removeEventListener("load", onIframeLoad);
-      }
-
-      if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
-      timeoutRef.current = window.setTimeout(() => {
-        setNewsletter({ email: "", status: "idle" });
-        timeoutRef.current = null;
-      }, 2500);
+    const cleanup = () => {
+      delete win[callbackName];
+      script.remove();
     };
 
-    // Attach listener
-    if (iframe) {
-      iframe.addEventListener("load", onIframeLoad);
-    }
+    win[callbackName] = (data: { result: string; msg: string }) => {
+      if (data.result === "success") {
+        setNewsletter({
+          email: "",
+          status: "sent",
+          message: "Merci pour votre inscription !",
+        });
+        if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+        timeoutRef.current = window.setTimeout(() => {
+          setNewsletter({ email: "", status: "idle" });
+          timeoutRef.current = null;
+        }, 2500);
+      } else {
+        setNewsletter({
+          email,
+          status: "error",
+          message:
+            data.msg?.replace(/<[^>]*>/g, "") ||
+            "Échec de l'inscription, veuillez réessayer.",
+        });
+      }
+      cleanup();
+    };
 
-    // Create temporary form and submit it to Mailchimp, target the hidden iframe
-    const form = document.createElement("form");
-    form.action = MAILCHIMP_URL;
-    form.method = "POST";
-    form.target = iframeName;
-
-    // Required Mailchimp fields
-    const emailInput = document.createElement("input");
-    emailInput.type = "hidden";
-    emailInput.name = "EMAIL";
-    emailInput.value = email;
-    form.appendChild(emailInput);
-
-    // Some Mailchimp forms include u and id as hidden fields; include them just in case
-    // (not strictly necessary if they are present in the URL, but safe to include)
-    const uMatch = MAILCHIMP_URL.match(/[?&]u=([^&]+)/);
-    const idMatch = MAILCHIMP_URL.match(/[?&]id=([^&]+)/);
-    if (uMatch) {
-      const uInput = document.createElement("input");
-      uInput.type = "hidden";
-      uInput.name = "u";
-      uInput.value = uMatch[1];
-      form.appendChild(uInput);
-    }
-    if (idMatch) {
-      const idInput = document.createElement("input");
-      idInput.type = "hidden";
-      idInput.name = "id";
-      idInput.value = idMatch[1];
-      form.appendChild(idInput);
-    }
-
-    // Append and submit
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
+    const script = document.createElement("script");
+    script.src = `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(
+      email
+    )}&c=${callbackName}`;
+    script.onerror = () => {
+      setNewsletter({
+        email,
+        status: "error",
+        message: "Échec de l'inscription, veuillez réessayer plus tard.",
+      });
+      cleanup();
+    };
+    document.body.appendChild(script);
   };
 
   return (
@@ -141,6 +115,15 @@ const Footer = (): JSX.Element => {
           </p>
 
           <div className="mt-4 flex items-center gap-3">
+            <motion.a
+              href="https://portfolio-mng.netlify.app/"
+              target="_blank"
+              aria-label="Portfolio"
+              className="p-2 rounded-full"
+              whileHover={{ scale: 1.1, boxShadow: "0 0 12px #00ffff" }}
+            >
+              <FiFolder size={16} />
+            </motion.a>
             <motion.a
               href="https://github.com/MohnajibG"
               target="_blank"
@@ -181,24 +164,23 @@ const Footer = (): JSX.Element => {
               {
                 label: "Services",
                 to: "/home#features",
-                hoverClass: "neon-cyan",
+                className:
+                  "flex items-center gap-2 text-sm hover:text-neon-cyan transition-colors",
               },
               {
                 label: "À propos",
                 to: "/home#about",
-                hoverClass: "glitch-teal",
+                className:
+                  "flex items-center gap-2 text-sm hover:text-glitch-teal transition-colors",
               },
               {
                 label: "Contact",
                 to: "/home#contact",
-                hoverClass: "ion-yellow",
+                className:
+                  "flex items-center gap-2 text-sm hover:text-ion-yellow transition-colors",
               },
             ].map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={`flex items-center gap-2 text-sm hover:text-${item.hoverClass} transition-colors`}
-              >
+              <Link key={item.to} to={item.to} className={item.className}>
                 <FiChevronRight /> {item.label}
               </Link>
             ))}
@@ -245,10 +227,10 @@ const Footer = (): JSX.Element => {
             <li className="flex items-center gap-2">
               <FiPhone />
               <a
-                href="tel:+33658478308"
+                href="tel:+33658748308"
                 className="hover:text-glitch-teal transition-colors"
               >
-                +33 6 58 47 83 08
+                +33 6 58 74 83 08
               </a>
             </li>
 
