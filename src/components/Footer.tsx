@@ -217,6 +217,16 @@ const Footer = (): JSX.Element => {
             <li className="flex items-center gap-2">
               <FiMail />
               <a
+                href="mailto:contact@mngdev.pro"
+                className="hover:text-neon-cyan transition-colors"
+              >
+                contact@mngdev.pro
+              </a>
+            </li>
+
+            <li className="flex items-center gap-2">
+              <FiMail />
+              <a
                 href="mailto:mngdevpro@gmail.com"
                 className="hover:text-neon-cyan transition-colors"
               >

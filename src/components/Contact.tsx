@@ -42,7 +42,7 @@ const Contact = (): JSX.Element => {
   // Optional company/template metadata (can be provided via env)
   const COMPANY_NAME = import.meta.env.VITE_COMPANY_NAME || "Najib G";
   const CONTACT_EMAIL =
-    import.meta.env.VITE_CONTACT_EMAIL || "mngdevpro@gmail.com";
+    import.meta.env.VITE_CONTACT_EMAIL || "contact@mngdev.pro";
   const CONTACT_PHONE =
     import.meta.env.VITE_CONTACT_PHONE || "+33 6 58 74 83 08";
   const LOGO_URL =
